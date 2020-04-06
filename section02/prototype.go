@@ -1,4 +1,4 @@
-package creational
+package builder
 
 import (
 	"errors"
@@ -16,7 +16,7 @@ const (
 )
 
 func GetShirtsCloner() ShirtCloner {
-	return nil
+	return new(ShirtsCache)
 }
 
 type ShirtsCache struct{}

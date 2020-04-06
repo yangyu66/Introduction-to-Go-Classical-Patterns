@@ -1,7 +1,9 @@
-package creational
+package builder
 
 import "testing"
 
+// go test -v -run=Builder
+// go test -timeout 30s -v -run=TestBuilderPattern
 func TestBuilderPattern(t *testing.T) {
 	manufacturingComplex := ManufacturingDirector{}
 
@@ -21,6 +23,13 @@ func TestBuilderPattern(t *testing.T) {
 
 	if car.Seats != 5 {
 		t.Errorf("Seats on a car must be 5 and they were %d\n", car.Seats)
+	}
+
+	manufacturingComplex.Construct()
+
+	car2 := carBuilder.GetVehicle()
+	if car != car2 {
+		t.Errorf("diff car!")
 	}
 
 	bikeBuilder := &BikeBuilder{}

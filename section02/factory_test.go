@@ -1,10 +1,11 @@
-package creational
+package builder
 
 import (
 	"strings"
 	"testing"
 )
 
+// go test -v -run=TestGetPaymentMethod
 func TestGetPaymentMethodCash(t *testing.T) {
 	payment, err := GetPaymentMethod(Cash)
 	if err != nil {

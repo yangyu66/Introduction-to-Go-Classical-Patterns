@@ -1,6 +1,7 @@
-package creational
+package builder
 
 type BuildProcess interface {
+	newVehicle() BuildProcess
 	SetWheels() BuildProcess
 	SetSeats() BuildProcess
 	SetStructure() BuildProcess
@@ -13,7 +14,7 @@ type ManufacturingDirector struct {
 }
 
 func (f *ManufacturingDirector) Construct() {
-	f.builder.SetSeats().SetStructure().SetWheels()
+	f.builder.newVehicle().SetSeats().SetStructure().SetWheels()
 }
 
 func (f *ManufacturingDirector) SetBuilder(b BuildProcess) {
@@ -30,6 +31,12 @@ type VehicleProduct struct {
 //A Builder of type car
 type CarBuilder struct {
 	v VehicleProduct
+}
+
+func (c *CarBuilder) newVehicle() BuildProcess {
+	nv := VehicleProduct{}
+	c.v = nv
+	return c
 }
 
 func (c *CarBuilder) SetWheels() BuildProcess {
@@ -56,6 +63,12 @@ type BikeBuilder struct {
 	v VehicleProduct
 }
 
+func (c *BikeBuilder) newVehicle() BuildProcess {
+	nv := VehicleProduct{}
+	c.v = nv
+	return c
+}
+
 func (b *BikeBuilder) SetWheels() BuildProcess {
 	b.v.Wheels = 2
 	return b
@@ -78,6 +91,12 @@ func (b *BikeBuilder) GetVehicle() VehicleProduct {
 //A Builder of type motorbike
 type BusBuilder struct {
 	v VehicleProduct
+}
+
+func (c *BusBuilder) newVehicle() BuildProcess {
+	nv := VehicleProduct{}
+	c.v = nv
+	return c
 }
 
 func (b *BusBuilder) SetWheels() BuildProcess {

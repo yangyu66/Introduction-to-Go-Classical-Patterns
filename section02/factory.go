@@ -1,4 +1,4 @@
-package creational
+package builder
 
 import (
 	"errors"
@@ -39,12 +39,12 @@ func (c *CashPM) Pay(amount float32) string {
 	return fmt.Sprintf("%0.2f payed using cash\n", amount)
 }
 
-func (c *DebitCardPM) Pay(amount float32) string {
+func (c DebitCardPM) Pay(amount float32) string {
 	return fmt.Sprintf("%#0.2f payed using debit card\n", amount)
 }
 
 type NewDebitCardPM struct{}
 
-func (d *NewDebitCardPM) Pay(amount float32) string {
+func (d NewDebitCardPM) Pay(amount float32) string {
 	return fmt.Sprintf("%#0.2f payed using debit card (new)\n", amount)
 }

@@ -1,7 +1,8 @@
-package creational
+package builder
 
 import "testing"
 
+// go test -v -run=TestClone
 func TestClone(t *testing.T) {
 	shirtCache := GetShirtsCloner()
 	if shirtCache == nil {
